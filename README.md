@@ -4,7 +4,7 @@ spelling-suggester
 How to run
 ----------
 
-In order to run this program, you need to have `node`, `npm`, and `git` installed on your machine. After these dependencies are installed, type in the following commands in your terminal:
+In order to run this program, you need to have `node`, `npm`, and `git` installed on your machine. After these dependencies are installed, execute the following commands in your terminal:
 
 1. `git clone https://github.com/peluja1012/spelling-suggester.git`
 2. `cd spelling-suggester`
@@ -22,7 +22,7 @@ My initial solution to this problem was to iterate over each query and compare i
 
 My first improvement to my original solution was to make my edit distance calculation faster. It was noted on several articles and blog posts like [this one](http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html) that the algorithm could be optimized if we know that the edit distance can't exceed a limit k. In this case it is necessary to calculate only the diagonal band of width 2k+1 in the distance matrix. The time complexity becomes O(d * k * min(n,m)). The processing time was reduced to ~8s.
 
-My last improvement came as result of my previous solution being largely susceptible to the size of the dictionary. I came across a data structure called BK Tree [here](http://vivekn.com/blog/2014/01/27/efficient-spelling-correction-using-bk-trees/) and [here](http://blog.notdot.net/2007/4/Damn-Cool-Algorithms-Part-1-BK-Trees). The idea behind the BK tree is to construct a k-ary tree, such that only nodes that are within a particular edit distance are searched. Tests show that searching with a distance of 1 queries no more than 5-8% of the tree, and searching with two errors queries no more than 17-25% of the tree. With this improvement, the processing time of my program came down to ~5s.
+My last improvement came as result of my previous solution being largely susceptible to the size of the dictionary. I came across a data structure called BK Tree [here](http://vivekn.com/blog/2014/01/27/efficient-spelling-correction-using-bk-trees/) and [here](http://blog.notdot.net/2007/4/Damn-Cool-Algorithms-Part-1-BK-Trees). The idea behind the BK tree is to construct a k-ary tree, such that only nodes that are within a particular edit distance are searched. Tests show that searching with a distance of 1 queries no more than 5-8% of the tree, and searching with an edit distance of 2 queries no more than 17-25% of the tree. With this improvement, the processing time of my program came down to ~5s.
 
 1. How would the code perform if the size of the dictionary were 1 million words?
   
@@ -33,6 +33,7 @@ My last improvement came as result of my previous solution being largely suscept
   With an edit distance of 3, the code would have to query ~60% of the tree. As a result, performance would be slower        compared to running the code with an edit distance of 2 or less.
   
 3. How does the code perform on long queries versus short queries and why?
+
   The edit distance calculation takes longer for longer queries, therefore the overall performance of the suggestion code    decreases when the queries are long.
 
 Attributions
