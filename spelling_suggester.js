@@ -29,7 +29,8 @@ var getBktree = function() {
       deferred.resolve(tree);
     });
 
-    return deferred.promise;
+    dictBktree = deferred.promise;
+    return dictBktree;
   }
   return dictBktree;
 };
