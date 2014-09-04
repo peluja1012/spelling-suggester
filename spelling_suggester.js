@@ -44,7 +44,7 @@ var generateSuggestionsForFile = function(path) {
       var query;
       while (query = fileReader.read()) {
         var suggestions = tree.query(query, 2);
-        output.write('* ' + query + ': ["' + suggestions.join('", "') + '"]\n');
+        output.write("* " + query + ": ['" + suggestions.join("', '") + "']\n");
       }
     });
 
